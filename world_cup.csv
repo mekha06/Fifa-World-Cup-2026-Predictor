@@ -1,5 +1,101 @@
-team,year,host,confederation,elo_rating,squad_form,win_percentage_since_last_cup,goals_scored,goals_conceded,wc_appearances,previous_cup_finish,previous_wc_finish,finish_stage
-Argentina,2014,0,CONMEBOL,2050,,
+team,year,host,confederation,elo_rating,,win_percentage_since_last_cup,goals_scored,goals_conceded,wc_appearances,previous_cup_finish,previous_wc_finish,squad_form,finish_stage
+Argentina,2014,0,CONMEBOL,2050,
+Brazil
+Colombia
+Ecuador
+Paraguay
+Uruguay
+Algeria
+Cabo Verde
+Congo DR
+Ivory Coast
+Egypt
+Ghana
+Morocco
+Senegal
+South Africa
+Tunisia
+Canada
+Mexico
+USA
+Curacao
+Haiti
+Panama
+Australia
+Iran
+Iraq
+Japan
+Jordan
+Korea Republic
+Qatar
+Saudi Arabia
+Uzbekistan
+New Zealand
+Austria
+Belgium
+Bosnia and Herzegovina
+Croatia
+Czech Republic
+England
+France
+Germany
+Netherlands
+Norway
+Portugal
+Scotland
+Spain
+Sweden
+Switzerland
+Turkey
+Argentina,2018,0,CONMEBOL,
+Brazil
+Colombia
+Ecuador
+Paraguay
+Uruguay
+Algeria
+Cabo Verde
+Congo DR
+Ivory Coast
+Egypt
+Ghana
+Morocco
+Senegal
+South Africa
+Tunisia
+Canada
+Mexico
+USA
+Curacao
+Haiti
+Panama
+Australia
+Iran
+Iraq
+Japan
+Jordan
+Korea Republic
+Qatar
+Saudi Arabia
+Uzbekistan
+New Zealand
+Austria
+Belgium
+Bosnia and Herzegovina
+Croatia
+Czech Republic
+England
+France
+Germany
+Netherlands
+Norway
+Portugal
+Scotland
+Spain
+Sweden
+Switzerland
+Turkey
+Argentina,2022,0,CONMEBOL,2050,
 Brazil
 Colombia
 Ecuador
