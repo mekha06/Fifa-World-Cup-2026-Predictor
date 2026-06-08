@@ -24,5 +24,7 @@ df.to_csv('world_cup_dataset.csv',index=False)
 
 #df.insert(8,'points_per_match',None)
 
-df = df.drop(columns=['points_per_match'])
+#df = df.drop(columns=['points_per_match'])
+
+df = df.drop(columns=['squad_value'])
 df.to_csv('world_cup_dataset.csv',index=False)
