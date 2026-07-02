@@ -8,7 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 import os
 
 # Setup paths
-base_path = r"d:\Fifa-World-Cup-2026-Predictor"
+base_path = r"D:\Coding journey\Fifa World Cup 2026 Predictor"
 csv_path = os.path.join(base_path, "world_cup_dataset.csv")
 models_dir = os.path.join(base_path, "models")
 

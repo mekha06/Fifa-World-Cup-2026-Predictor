@@ -4,7 +4,7 @@ import os
 import random
 
 # Setup paths
-base_path = r"d:\Fifa-World-Cup-2026-Predictor"
+base_path = r"D:\Coding journey\Fifa World Cup 2026 Predictor"
 predictions_path = os.path.join(base_path, "finalmodel", "final_predictions_2026.csv")
 
 def load_teams():

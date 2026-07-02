@@ -11,7 +11,7 @@ from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 # Setup paths
-base_path = r"d:\Fifa-World-Cup-2026-Predictor"
+base_path = r"D:\Coding journey\Fifa World Cup 2026 Predictor"
 csv_path = os.path.join(base_path, "world_cup_dataset.csv")
 predict_csv_path = os.path.join(base_path, "prediction_dataset.csv")
 final_dir = os.path.join(base_path, "finalmodel")

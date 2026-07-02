@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FIFA World Cup 2026 Predictor — Monte Carlo simulation engine forecasting win probabilities for all 48 nations using XGBoost ML and Elo ratings." />
+  <meta property="og:title" content="FIFA World Cup 2026 Predictor" />
+  <meta property="og:description" content="Monte Carlo simulation powered by XGBoost ML and Elo ratings." />
+  <title>FIFA World Cup 2026 Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- ── CANVAS BACKGROUND ─────────────────────────────────── -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ── NAVIGATION ─────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-brand">
+      <span class="nav-trophy">🏆</span>
+      <span class="nav-title">WC2026 <span class="nav-accent">PREDICTOR</span></span>
+    </div>
+    <div class="nav-links">
+      <a href="#simulator" class="nav-link">Simulator</a>
+      <a href="#results" class="nav-link">Results</a>
+      <a href="#groups" class="nav-link">Groups</a>
+      <a href="#teams" class="nav-link">Teams</a>
+    </div>
+    <div class="nav-badge">POWERED BY ML + MONTE CARLO</div>
+  </nav>
+
+  <!-- ── HERO ────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">FIFA WORLD CUP 2026 · NORTH AMERICA</p>
+      <h1 class="hero-title">Who Will<br/><span class="hero-gradient">LIFT THE TROPHY?</span></h1>
+      <p class="hero-subtitle">
+        Powered by <strong>XGBoost ML</strong> trained on 80 years of tournament data
+        and <strong>Monte Carlo simulation</strong> running thousands of possible tournaments.
+      </p>
+      <div class="hero-stats-row">
+        <div class="hero-stat"><span class="hero-stat-num">48</span><span class="hero-stat-lbl">Nations</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num">10K</span><span class="hero-stat-lbl">Simulations</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num">XGB</span><span class="hero-stat-lbl">Model</span></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><span class="hero-stat-num">R²=0.45</span><span class="hero-stat-lbl">Accuracy</span></div>
+      </div>
+      <a href="#simulator" class="hero-cta">Run a Simulation →</a>
+    </div>
+    <div class="hero-globe-wrap">
+      <div class="hero-globe" id="hero-globe"></div>
+    </div>
+  </section>
+
+  <!-- ── SIMULATOR PANEL ─────────────────────────────────────── -->
+  <section id="simulator">
+    <div class="section-header">
+      <h2 class="section-title">SIMULATION <span class="accent">ENGINE</span></h2>
+      <p class="section-sub">Configure and fire off a fresh Monte Carlo run — watch probabilities update live.</p>
+    </div>
+
+    <div class="sim-panel glass">
+      <!-- Controls -->
+      <div class="sim-controls">
+        <div class="control-group">
+          <label class="ctrl-label">Simulation Mode</label>
+          <div class="mode-toggle">
+            <button id="btn-mode-random" class="mode-btn active" data-mode="random">
+              🎲 Random Groups
+            </button>
+            <button id="btn-mode-scheduled" class="mode-btn" data-mode="scheduled">
+              📋 Official Groups
+            </button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="ctrl-label" for="sim-count-slider">
+            Simulations: <span id="sim-count-display">1,000</span>
+          </label>
+          <input type="range" id="sim-count-slider" min="100" max="10000" step="100" value="1000" />
+          <div class="slider-ticks">
+            <span>100</span><span>2,500</span><span>5,000</span><span>7,500</span><span>10K</span>
+          </div>
+        </div>
+
+        <button id="btn-run-sim" class="run-btn">
+          <span class="run-icon">▶</span>
+          <span id="run-btn-label">RUN SIMULATION</span>
+        </button>
+      </div>
+
+      <!-- Progress -->
+      <div id="sim-progress-wrap" class="sim-progress-wrap hidden">
+        <div class="progress-header">
+          <span class="progress-label">Running Monte Carlo…</span>
+          <span id="progress-pct" class="progress-pct">0%</span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="progress-steps" class="progress-steps">
+          <span class="step active">⚽ Group Stage</span>
+          <span class="step">🏆 Round of 32</span>
+          <span class="step">⚡ Knockouts</span>
+          <span class="step">🥇 Final</span>
+        </div>
+      </div>
+
+      <!-- Quick model info -->
+      <div class="model-info-row">
+        <div class="model-chip">🤖 XGBoost · MAE 0.68</div>
+        <div class="model-chip">📊 Elo + ML Hybrid Strength</div>
+        <div class="model-chip">🔁 Poisson Goal Model</div>
+        <div class="model-chip">🎯 Leave-One-Group-Out CV</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESULTS ─────────────────────────────────────────────── -->
+  <section id="results">
+    <div class="section-header">
+      <h2 class="section-title">CHAMPIONSHIP <span class="accent">ODDS</span></h2>
+      <p class="section-sub">Probability of each nation lifting the trophy, across all simulated tournaments.</p>
+    </div>
+
+    <!-- Podium -->
+    <div id="podium" class="podium"></div>
+
+    <!-- Filter Bar -->
+    <div class="results-filter-bar">
+      <div class="stage-tabs" id="stage-tabs">
+        <button class="stage-tab active" data-stage="Winner_prob">🏆 Champion</button>
+        <button class="stage-tab" data-stage="Final_prob">🥈 Final</button>
+        <button class="stage-tab" data-stage="SF_prob">🔝 Semi-Final</button>
+        <button class="stage-tab" data-stage="QF_prob">⚡ Quarter-Final</button>
+        <button class="stage-tab" data-stage="R16_prob">🏅 Round of 16</button>
+      </div>
+      <div class="conf-filter" id="conf-filter">
+        <button class="conf-btn active" data-conf="ALL">All</button>
+        <button class="conf-btn" data-conf="UEFA">UEFA</button>
+        <button class="conf-btn" data-conf="CONMEBOL">CONMEBOL</button>
+        <button class="conf-btn" data-conf="CONCACAF">CONCACAF</button>
+        <button class="conf-btn" data-conf="CAF">CAF</button>
+        <button class="conf-btn" data-conf="AFC">AFC</button>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-container glass" id="chart-container">
+      <div id="results-chart" class="results-chart"></div>
+    </div>
+  </section>
+
+  <!-- ── GROUPS ──────────────────────────────────────────────── -->
+  <section id="groups">
+    <div class="section-header">
+      <h2 class="section-title">GROUP <span class="accent">STAGE</span></h2>
+      <p class="section-sub">All 12 official groups for the 48-nation FIFA World Cup 2026.</p>
+    </div>
+    <div id="groups-grid" class="groups-grid"></div>
+  </section>
+
+  <!-- ── TEAM DIRECTORY ─────────────────────────────────────── -->
+  <section id="teams">
+    <div class="section-header">
+      <h2 class="section-title">ALL <span class="accent">48 NATIONS</span></h2>
+      <p class="section-sub">Sorted by hybrid strength (Elo + ML predicted stage).</p>
+    </div>
+    <div id="teams-grid" class="teams-grid"></div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────── -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">🏆 FIFA WC 2026 PREDICTOR</div>
+      <p class="footer-note">Built with XGBoost · Elo Ratings · Monte Carlo Simulation · Flask · Vanilla JS</p>
+      <p class="footer-note">Model trained on historical World Cup data (1990–2022). For educational purposes.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

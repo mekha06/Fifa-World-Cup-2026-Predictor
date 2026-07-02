@@ -1,0 +1,10 @@
+# Ignore per-run model result files
+/models/results/*.csv
+/models/results/*.txt
+
+# Ignore common generated artifacts
+/finalmodel/*.csv
+/finalmodel/*.png
+/finalmodel/*.txt
+/eda/*.csv
+/eda/*.png
