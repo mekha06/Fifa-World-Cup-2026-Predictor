@@ -7,7 +7,7 @@ import threading
 import uuid
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from simulation import (
+from webapp.backend.simulation import (
     get_teams_data,
     get_groups_data,
     load_results,
